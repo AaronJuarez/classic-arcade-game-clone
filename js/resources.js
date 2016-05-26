@@ -4,6 +4,8 @@
  * a simple "caching" layer so it will reuse cached images if you attempt
  * to load the same image multiple times.
  */
+"use strict";
+
 (function() {
     var resourceCache = {};
     var loading = [];
@@ -57,6 +59,7 @@
                  * call all of the onReady() callbacks we have defined.
                  */
                 if(isReady()) {
+                    console.log("callbacks");
                     readyCallbacks.forEach(function(func) { func(); });
                 }
             };

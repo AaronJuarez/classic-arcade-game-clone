@@ -1,3 +1,59 @@
+@import url(http://weloveiconfonts.com/api/?family=fontawesome);
+
+[class*="fontawesome-"]:before {
+  font-family: 'fontawesome', sans-serif;
+}
+
 body {
     text-align: center;
 }
+
+header {
+	display: block;
+	width: 80%;
+	height: 50px;
+	margin: 0;
+	padding: 0;
+	vertical-align: 50%;
+	position: absolute;
+	left: 10%;
+	top: 0;
+}
+
+.game-data {
+	display: inline-block;
+	width: 33%;
+	color: #0192B5;
+	font-family: "brandon-grotesque", Helvetica, Arial, sans-serif;
+}
+
+li {
+	list-style-type: none;
+	display: inline-block;
+	padding: 0 1em;
+}
+
+h1 {
+	font-size: 20px;
+}
+
+h2 {
+	font-size: 15px;
+}
+
+.modal-footer {
+	text-align: center;
+}
+
+.char-elem {
+	cursor: pointer;
+}
+
+.char-selected {
+	background-color: #A7F7A2;
+}
+
+#game-over-img {
+	max-width: 400px;
+}
+
