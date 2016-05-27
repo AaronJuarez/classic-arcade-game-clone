@@ -59,7 +59,7 @@ var Engine = (function(global) {
          */
 
         //if game is paused, don't update or render
-        if(pause===false) {
+        if(app.pause===false) {
             update(dt);
             render();
         };
@@ -102,18 +102,18 @@ var Engine = (function(global) {
     function checkCollisions() {
 
         //check position of player with each enemy in array
-        allEnemies.forEach(function(enemy) {
+        app.allEnemies.forEach(function(enemy) {
             var topEnemyX = enemy.x+70;
-            var topPlayerX = player.x+70;
+            var topPlayerX = app.player.x+70;
 
-            var topPlayerY = player.y + 8;
+            var topPlayerY = app.player.y + 8;
 
-            if (enemy.y >= player.y && enemy.y <= topPlayerY) {
-                if ((player.x <= topEnemyX && player.x >= enemy.x) || (topPlayerX >= enemy.x && topPlayerX <= topEnemyX)) {
-                    player.x = 404;
-                    player.y = 390;
+            if (enemy.y >= app.player.y && enemy.y <= topPlayerY) {
+                if ((app.player.x <= topEnemyX && app.player.x >= enemy.x) || (topPlayerX >= enemy.x && topPlayerX <= topEnemyX)) {
+                    app.player.x = 404;
+                    app.player.y = 390;
                     //player looses one life
-                    addLife(false);
+                    app.addLife(false);
                 };
             };
 
@@ -128,10 +128,10 @@ var Engine = (function(global) {
      * render methods.
      */
     function updateEntities(dt) {
-        allEnemies.forEach(function(enemy) {
+        app.allEnemies.forEach(function(enemy) {
             enemy.update(dt);
         });
-        player.update();
+        app.player.update();
     }
 
     /* This function initially draws the "game level", it will then call
@@ -185,15 +185,15 @@ var Engine = (function(global) {
          * the render function you have defined.
          */
 
-        allItems.forEach(function(item) {
+        app.allItems.forEach(function(item) {
             item.render();
         });
 
-        allEnemies.forEach(function(enemy) {
+        app.allEnemies.forEach(function(enemy) {
             enemy.render();
         });
 
-        player.render();
+        app.player.render();
     }
 
     /* This function does nothing but it could have been a good place to
@@ -207,9 +207,9 @@ var Engine = (function(global) {
         //show scenario under start game modal
         update(dt);
         render();
-        pause = true;
+        app.pause = true;
         //display start game modal, player can choose a character
-        startGame();
+        app.startGame();
     }
 
     /* Go ahead and load all of the images we know we're going to need to
