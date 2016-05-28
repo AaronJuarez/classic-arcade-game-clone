@@ -1,5 +1,10 @@
 # Clasic Arcade Game
-## frontend-nanodegree-arcade-game
+### To run
+---------------------------
+- Download or fork the application from [here](https://github.com/AaronJuarez/frontend-nanodegree-arcade-game)
+- Select ```index.html``` to start the app
+
+### To Use
 
 #### Characters
 ----------------------------
