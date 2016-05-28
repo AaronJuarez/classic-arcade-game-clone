@@ -8,8 +8,7 @@ app.pause = false;
 app.points = 0;
 app.maxSpeed = 400;
 app.allItems = new Map();
-
-
+app.LEVEL_UP_POINTS = 100;
 
 //function to choose randomly between three numbers
 app.randomNum = function(){
@@ -60,7 +59,7 @@ app.levelUp = function() {
     //update counters, display them on screen
     this.level++;
     $("#level").text("Level " + that.level);
-    this.points += 100;
+    this.points += this.LEVEL_UP_POINTS;
     $("#points").text(that.points + " pts");
 
     //when level up, delete all gems and hearts displayed
@@ -304,12 +303,18 @@ Enemy.prototype.update = function(dt) {
 
 var Player = function() {
     Character.call(this);
-    this.x = 404;
-    this.y = 390;
+    this.PLAYER_X_INIT_COORD = 404;
+    this.PLAYER_Y_INIT_COORD = 390;
+    this.x = this.PLAYER_X_INIT_COORD;
+    this.y = this.PLAYER_Y_INIT_COORD;
     //xplus and y plus used to manage rock interactivity
     this.xplus = 0;
     this.yplus = 0;
     this.sprite = 'images/char-boy.png';
+    this.PLAYER_RIGTH_LIMIT = 909;
+    this.PLAYER_LEFT_LIMIT = 0;
+    this.PLAYER_Y_MOVE = 83;
+    this.PLAYER_X_MOVE = 101;
 
 };
 
@@ -320,22 +325,22 @@ Player.prototype.constructor = Player;
 Player.prototype.update = function() {
     //player reaches water
     if (this.y === -25) {
-        this.x = 404;
-        this.y = 390;
+        this.x = this.PLAYER_X_INIT_COORD;
+        this.y = this.PLAYER_Y_INIT_COORD;
         app.levelUp();
     }
 
     //contain player into playing area
-    if (this.y >= 390) {
-        this.y = 390;
+    if (this.y >= this.PLAYER_Y_INIT_COORD) {
+        this.y = this.PLAYER_Y_INIT_COORD;
     }
 
-    if (this.x <= 0) {
-        this.x = 0;
+    if (this.x <= this.PLAYER_LEFT_LIMIT) {
+        this.x = this.PLAYER_LEFT_LIMIT;
     }
 
-    if (this.x >= 909) {
-        this.x = 909;
+    if (this.x >= this.PLAYER_RIGTH_LIMIT) {
+        this.x = this.PLAYER_RIGTH_LIMIT;
     }
 
     //manage rock, gem and heart items
@@ -351,7 +356,7 @@ Player.prototype.update = function() {
                 } else {
                     if (item instanceof Gem) {
                         //if item is gem, add points and delete gem from map
-                        app.points = app.points + item.gemValue;
+                        app.points = app.points + item.GEM_VALUE;
                         $("#points").text(app.points + " pts");
                         app.allItems.delete(item.key);
                     } else {
@@ -373,20 +378,20 @@ Player.prototype.handleInput = function(key) {
 
     switch (key) {
         case 'left':
-            this.x = this.x - 101;
-            this.xplus = -101;
+            this.x = this.x - this.PLAYER_X_MOVE;
+            this.xplus = - this.PLAYER_X_MOVE;
             break;
         case 'up':
-            this.y = this.y - 83;
-            this.yplus = -83;
+            this.y = this.y - this.PLAYER_Y_MOVE;
+            this.yplus = - this.PLAYER_Y_MOVE;
             break;
         case 'right':
-            this.x = this.x + 101;
-            this.xplus = 101;
+            this.x = this.x + this.PLAYER_X_MOVE;
+            this.xplus = this.PLAYER_X_MOVE;
             break;
         case 'down':
-            this.y = this.y + 83;
-            this.yplus = 83;
+            this.y = this.y + this.PLAYER_Y_MOVE;
+            this.yplus = this.PLAYER_Y_MOVE;
             break;
     }
 };
@@ -479,14 +484,14 @@ Gem.prototype.randomColor = function(){
 
     if (num === 0) {
         this.sprite = 'images/Gem-Blue.png';
-        this.gemValue = 300;
+        this.GEM_VALUE = 300;
     }else {
         if (num === 1) {
             this.sprite = 'images/Gem-Orange.png';
-            this.gemValue = 200;
+            this.GEM_VALUE = 200;
         }else {
             this.sprite = 'images/Gem-Green.png';
-            this.gemValue = 100;
+            this.GEM_VALUE = 100;
         }
     }
 };
