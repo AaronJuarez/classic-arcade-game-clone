@@ -1,8 +1,9 @@
-# Clasic Arcade Game
+# Clasic Arcade Game Clone
 ### To run
 ---------------------------
 - Download or fork the application from [here](https://github.com/AaronJuarez/frontend-nanodegree-arcade-game)
 - Select ```index.html``` to start the app
+- You can find a version of the app running [here](https://aaronjuarez.github.io/classic-arcade-game-clone/)
 
 ### To Use
 
